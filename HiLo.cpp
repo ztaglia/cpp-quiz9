@@ -18,8 +18,25 @@ int main() {
     int secretNumber = Random::get(1, 100);
     assert(secretNumber >= 1 && secretNumber <= 100);
     assert(MAX_GUESSES == 7);
-    // for (int try = 1; try <= MAX_GUESSES; try++) {
-    //     int guess = getGuess(try);
-    std::cout << getGuess(1) << std::endl;
+    for (int attempt = 1; attempt <= MAX_GUESSES; attempt++) {
+        int guess = getGuess(attempt);
+        if (guess > secretNumber) {
+            std::cout << "Your guess is too high." << std::endl;
+        } else if (guess < secretNumber) {
+            std::cout << "Your guess is too low." << std::endl;
+        } else {
+            std::cout << "Correct! You win!" << std::endl;
+        }
+    std::cout << "Sorry, you lose. The correct number was " << secretNumber << "." << std::endl;
+    while (true) {
+        std::cout << "Would you like to play again? (y/n)? ";
+        char playAgain;
+        std::cin >> playAgain;
+        if (playAgain == 'y') {
+            return main();
+        } else if (playAgain == 'n') {
+            std::cout << "Thanks for playing!" << std::endl;
+        }
+    }
     return 0;
 }
